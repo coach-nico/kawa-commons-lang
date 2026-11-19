@@ -1,7 +1,7 @@
 const lang = require('../../../');
 const constants = require('../../../src/fn/constants/fn.constants');
 
-describe('Check [function] scipt of utilities', () => {
+describe('Check [function] script of utilities', () => {
   describe('Check [is] utility.', () => {
     it.each([
       { given: () => {}, expected: true },
