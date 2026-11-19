@@ -1,0 +1,31 @@
+const constants = require('../constants/string.constants');
+const fn = require('../../fn');
+const int = require('../../int');
+const errors = require('../errors/string.errors');
+
+const is = value => typeof value === constants.type;
+const not = value => !is(value);
+const trim = value => (is(value) ? value.trim() : '');
+const length = value => (is(value) ? value.length : 0);
+const isEmpty = value => length(value) === 0;
+const isBlank = value => length(trim(value)) === 0;
+
+const test = (value, pattern) => {
+  if (not(value)) return false;
+  if (is(pattern)) return new RegExp(pattern).test(value);
+  return pattern instanceof RegExp ? pattern.test(value) : true;
+};
+
+const check = (value, { minLength, maxLength, pattern } = {}) => {
+  if (not(value)) throw errors.whenInvalidType();
+  if (int.is(minLength) && value.length < minLength) throw errors.whenTooSmall(minLength);
+  if (int.is(maxLength) && value.length > maxLength) throw errors.whenTooBig(maxLength);
+  if (test(value, pattern)) return value;
+  throw errors.whenDontMatch(pattern);
+};
+
+const resolve = (value, { minLength, maxLength, pattern } = {}) => {
+  return fn.async(() => check(value, { minLength, maxLength, pattern }));
+};
+
+module.exports = { check, is, isBlank, isEmpty, length, not, resolve, test, trim };
