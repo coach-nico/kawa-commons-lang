@@ -1,0 +1,17 @@
+{
+  "name": "kawa-commons-lang",
+  "version": "1.0.0",
+  "description": "Common set of utilities / helpers dedicated to javascript.",
+  "license": "ISC",
+  "author": "Nicolas ROLLE",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest --coverage --testTimeout=10000 --detectOpenHandles"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.15.0",
+    "jest": "^29.7.0",
+    "prettier": "3.10.1"
+  }
+}
