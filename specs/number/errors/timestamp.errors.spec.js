@@ -1,4 +1,4 @@
-const errors = require('../../../src/time/errors/timestamp.errors');
+const errors = require('../../../src/number/errors/timestamp.errors');
 const lang = require('../../../');
 
 describe('Check [timestamp] error factories', () => {

@@ -1,6 +1,5 @@
 const constants = require('../constants/string.constants');
 const fn = require('../../fn');
-const { int } = require('../../number');
 const errors = require('../errors/string.errors');
 
 const is = value => typeof value === constants.type;
@@ -18,8 +17,8 @@ const test = (value, pattern) => {
 
 const check = (value, { minLength, maxLength, pattern } = {}) => {
   if (not(value)) throw errors.whenInvalidType();
-  if (int.is(minLength) && value.length < minLength) throw errors.whenTooSmall(minLength);
-  if (int.is(maxLength) && value.length > maxLength) throw errors.whenTooBig(maxLength);
+  if (Number.isInteger(minLength) && value.length < minLength) throw errors.whenTooSmall(minLength);
+  if (Number.isInteger(maxLength) && value.length > maxLength) throw errors.whenTooBig(maxLength);
   if (test(value, pattern)) return value;
   throw errors.whenDontMatch(pattern);
 };

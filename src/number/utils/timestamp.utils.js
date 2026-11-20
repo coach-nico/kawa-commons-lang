@@ -1,9 +1,10 @@
 const errors = require('../errors/timestamp.errors');
 const string = require('../../string');
+const number = require('./number.utils');
 
 const fromString = value => {
   const result = Date.parse(string.check(value));
-  if (isNaN(result)) throw errors.whenFormatInvalid();
+  if (number.not(result)) throw errors.whenFormatInvalid();
   return result;
 };
 
