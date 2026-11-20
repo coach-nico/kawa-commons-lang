@@ -11,6 +11,8 @@ const fromString = value => {
 
 const now = () => Date.now();
 
-const toISOString = value => new Date(int.check(value)).toISOString();
+const check = value => int.check(value);
+const resolve = value => int.resolve(value);
+const toISOString = value => new Date(check(value)).toISOString();
 
-module.exports = { fromString, now, toISOString };
+module.exports = { check, fromString, now, resolve, toISOString };

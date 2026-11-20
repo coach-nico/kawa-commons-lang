@@ -33,6 +33,32 @@ describe('Check [timestamp] script of utilities', () => {
     });
   });
 
+  describe('Check [check] utility.', () => {
+    it.each([{ given: sample.timestamp }])('should return given when given [$given].', ({ given }) => {
+      expect(lang.number.timestamp.check(given)).toBe(given);
+    });
+
+    it.each([{ given: undefined, expected: intErrors.whenInvalidType() }])(
+      'should throw [$expected] when given [$given].',
+      ({ expected, given }) => {
+        expect(() => lang.number.timestamp.check(given)).toThrow(expected);
+      }
+    );
+  });
+
+  describe('Check [resolve] utility.', () => {
+    it.each([{ given: sample.timestamp }])('should resolve given when given [$given].', ({ given }) => {
+      expect(lang.number.timestamp.resolve(given)).resolves.toBe(given);
+    });
+
+    it.each([{ given: undefined, expected: intErrors.whenInvalidType() }])(
+      'should reject [$expected] when given [$given].',
+      ({ expected, given }) => {
+        expect(lang.number.timestamp.resolve(given)).rejects.toThrow(expected);
+      }
+    );
+  });
+
   describe('Check [toISOstring] utility.', () => {
     it.each([{ expected: sample.string, given: sample.timestamp }])(
       'should return [$expected] when given [$given].',
@@ -42,7 +68,7 @@ describe('Check [timestamp] script of utilities', () => {
     );
 
     it.each([{ given: undefined, expected: intErrors.whenInvalidType() }])(
-      'should reject [$expected] when given [$given].',
+      'should throw [$expected] when given [$given].',
       ({ expected, given }) => {
         expect(() => lang.number.timestamp.toISOString(given)).toThrow(expected);
       }
