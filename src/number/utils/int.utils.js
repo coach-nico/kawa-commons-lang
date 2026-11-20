@@ -1,4 +1,4 @@
-const errors = require('../errors/int.errors');
+const errors = require('../errors');
 const fn = require('../../fn');
 
 const is = value => Number.isInteger(value);
@@ -12,11 +12,11 @@ const clean = (value, { min, max, dft } = {}) => {
 };
 
 const check = (value, { minimum, exclusiveMinimum, maximum, exclusiveMaximum } = {}) => {
-  if (not(value)) throw errors.whenInvalidType();
-  if (is(minimum) && value < minimum) throw errors.whenTooSmall(minimum, false);
-  if (is(exclusiveMinimum) && value <= exclusiveMinimum) throw errors.whenTooSmall(exclusiveMinimum, true);
-  if (is(maximum) && value > maximum) throw errors.whenTooBig(maximum, false);
-  if (is(exclusiveMaximum) && value >= exclusiveMaximum) throw errors.whenTooBig(exclusiveMaximum, true);
+  if (not(value)) throw errors.int.whenInvalidType();
+  if (is(minimum) && value < minimum) throw errors.number.whenTooSmall(minimum, false);
+  if (is(exclusiveMinimum) && value <= exclusiveMinimum) throw errors.number.whenTooSmall(exclusiveMinimum, true);
+  if (is(maximum) && value > maximum) throw errors.number.whenTooBig(maximum, false);
+  if (is(exclusiveMaximum) && value >= exclusiveMaximum) throw errors.number.whenTooBig(exclusiveMaximum, true);
   return value;
 };
 

@@ -1,6 +1,6 @@
 const constants = require('../constants/string.constants');
 const fn = require('../../fn');
-const int = require('../../int');
+const { int } = require('../../number');
 const errors = require('../errors/string.errors');
 
 const is = value => typeof value === constants.type;

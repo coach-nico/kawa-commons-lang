@@ -1,7 +1,7 @@
 const errors = require('../../errors');
 
 module.exports = {
-  whenInvalidType: () => errors.new('The value MUST be an integer.'),
+  whenInvalidType: () => errors.new('The value MUST be a number.'),
   whenTooSmall: (min, exclusive) => {
     return Boolean(exclusive)
       ? errors.new(`The value MUST be greater than ${min}.`)

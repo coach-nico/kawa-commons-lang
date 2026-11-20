@@ -1,13 +1,7 @@
-const errors = require('../../../src/int/errors/int.errors');
+const errors = require('../../../src/number/errors/');
 const lang = require('../../../');
 
-describe('Check [integer] error factories', () => {
-  describe('Check [whenInvalidType] factory.', () => {
-    it('should return an error with "The value MUST be an integer." as message', () => {
-      expect(errors.whenInvalidType()).toEqual(lang.errors.new('The value MUST be an integer.'));
-    });
-  });
-
+describe('Check [number] error factories', () => {
   describe('Check [whenTooSmall] factory.', () => {
     it.each([
       { min: 1, exclusive: true, expected: `The value MUST be greater than 1.` },
@@ -16,7 +10,7 @@ describe('Check [integer] error factories', () => {
     ])(
       'should return an error with $expected as message when given $min as min and $exclusive as exclusive',
       ({ min, exclusive, expected }) => {
-        expect(errors.whenTooSmall(min, exclusive)).toEqual(lang.errors.new(expected));
+        expect(errors.number.whenTooSmall(min, exclusive)).toEqual(lang.errors.new(expected));
       }
     );
   });
@@ -29,7 +23,7 @@ describe('Check [integer] error factories', () => {
     ])(
       'should return an error with $expected as message when given $max as max and $exclusive as exclusive',
       ({ max, exclusive, expected }) => {
-        expect(errors.whenTooBig(max, exclusive)).toEqual(lang.errors.new(expected));
+        expect(errors.number.whenTooBig(max, exclusive)).toEqual(lang.errors.new(expected));
       }
     );
   });
