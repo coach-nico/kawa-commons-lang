@@ -1,4 +1,5 @@
 const lang = require('../../../');
+const intErrors = require('../../../src/number/errors/int.errors');
 const stringErrors = require('../../../src/string/errors/string.errors');
 const errors = require('../../../src/number/errors/timestamp.errors');
 
@@ -7,9 +8,9 @@ const buildSample = asString => {
 };
 
 describe('Check [timestamp] script of utilities', () => {
-  describe('Check [now] utility.', () => {
-    const sample = buildSample('1981-10-19T00:45:00.000+01:00');
+  const sample = buildSample('1981-10-18T23:45:00.000Z');
 
+  describe('Check [now] utility.', () => {
     it('should return the current timestamp.', () => {
       jest.useFakeTimers().setSystemTime(sample.date);
       expect(lang.number.timestamp.now()).toBe(sample.timestamp);
@@ -17,8 +18,6 @@ describe('Check [timestamp] script of utilities', () => {
   });
 
   describe('Check [fromString] utility.', () => {
-    const sample = buildSample('1981-10-19T00:45:00.000+01:00');
-
     it.each([{ expected: sample.timestamp, given: sample.string }])(
       'should return [$expected] when given [$given].',
       ({ expected, given }) => {
@@ -32,5 +31,21 @@ describe('Check [timestamp] script of utilities', () => {
     ])('should reject [$expected] when given [$given].', ({ expected, given }) => {
       expect(() => lang.number.timestamp.fromString(given)).toThrow(expected);
     });
+  });
+
+  describe('Check [toISOstring] utility.', () => {
+    it.each([{ expected: sample.string, given: sample.timestamp }])(
+      'should return [$expected] when given [$given].',
+      ({ expected, given }) => {
+        expect(lang.number.timestamp.toISOString(given)).toBe(expected);
+      }
+    );
+
+    it.each([{ given: undefined, expected: intErrors.whenInvalidType() }])(
+      'should reject [$expected] when given [$given].',
+      ({ expected, given }) => {
+        expect(() => lang.number.timestamp.toISOString(given)).toThrow(expected);
+      }
+    );
   });
 });
