@@ -7,13 +7,13 @@ const not = value => !is(value);
 const getClass = value => (is(value) ? value.constructor : null);
 const getClassName = value => (is(value) ? value.constructor.name : null);
 
-const check = (value, {} = {}) => {
+const check = value => {
   if (not(value)) throw errors.whenInvalidType();
   return value;
 };
 
-const resolve = (value, {} = {}) => {
+const resolve = value => {
   return fn.async(() => check(value));
 };
 
-module.exports = { is, not, check, getClass, getClassName, resolve };
+module.exports = { check, getClass, getClassName, is, not, resolve };

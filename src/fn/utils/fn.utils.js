@@ -16,10 +16,4 @@ const async = value => {
   }
 };
 
-module.exports = {
-  is,
-  not,
-  resolve,
-  reject,
-  async
-};
+module.exports = { async, is, not, reject, resolve };

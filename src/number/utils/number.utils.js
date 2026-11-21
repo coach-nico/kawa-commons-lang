@@ -25,4 +25,4 @@ const resolve = (value, { minimum, exclusiveMinimum, maximum, exclusiveMaximum }
   return fn.async(() => check(value, { minimum, exclusiveMinimum, maximum, exclusiveMaximum }));
 };
 
-module.exports = { is, not, clean, check, resolve };
+module.exports = { check, clean, is, not, resolve };

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Common set of utilities / helpers dedicated to javascript / node projects.",
   "license": "ISC",
-  "author": "Nicolas ROLLE",
+  "author": "Coach Nico (https://github.com/coach-nico)",
   "type": "commonjs",
   "scripts": {
     "test": "jest --coverage --testTimeout=10000 --detectOpenHandles"
