@@ -28,4 +28,11 @@ describe('Checking [Common Error] class.', () => {
       jest.restoreAllMocks();
     });
   });
+
+  describe('Checking [reject] utility.', () => {
+    it('should reject a new instance of common error class.', () => {
+      const cause = new Error('cause');
+      expect(lang.errors.reject('m', cause)).rejects.toThrow(lang.errors.new('m', cause));
+    });
+  });
 });
