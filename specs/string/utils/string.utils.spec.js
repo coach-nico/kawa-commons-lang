@@ -88,6 +88,32 @@ describe('Check [string] script of utilities', () => {
     });
   });
 
+  describe('Check [not empty] utility.', () => {
+    it.each([
+      { given: undefined, expected: false },
+      { given: 0, expected: false },
+      { given: ``, expected: false },
+      { given: ` `, expected: true },
+      { given: `string`, expected: true },
+      { given: ` string `, expected: true }
+    ])('should return [$expected] when given [$given]', ({ given, expected }) => {
+      expect(lang.string.notEmpty(given)).toBe(expected);
+    });
+  });
+
+  describe('Check [not blank] utility.', () => {
+    it.each([
+      { given: undefined, expected: false },
+      { given: 0, expected: false },
+      { given: ``, expected: false },
+      { given: ` `, expected: false },
+      { given: `string`, expected: true },
+      { given: ` string `, expected: true }
+    ])('should return [$expected] when given [$given]', ({ given, expected }) => {
+      expect(lang.string.notBlank(given)).toBe(expected);
+    });
+  });
+
   describe('Check [test] utility.', () => {
     it.each([
       { value: undefined, pattern: undefined, expected: false },

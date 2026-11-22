@@ -7,7 +7,9 @@ const not = value => !is(value);
 const trim = value => (is(value) ? value.trim() : '');
 const length = value => (is(value) ? value.length : 0);
 const isEmpty = value => length(value) === 0;
+const notEmpty = value => length(value) > 0;
 const isBlank = value => length(trim(value)) === 0;
+const notBlank = value => length(trim(value)) > 0;
 
 const test = (value, pattern) => {
   if (not(value)) return false;
@@ -27,4 +29,4 @@ const resolve = (value, { minLength, maxLength, pattern } = {}) => {
   return fn.async(() => check(value, { minLength, maxLength, pattern }));
 };
 
-module.exports = { check, is, isBlank, isEmpty, length, not, resolve, test, trim };
+module.exports = { check, is, isBlank, isEmpty, length, not, notBlank, notEmpty, resolve, test, trim };
