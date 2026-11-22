@@ -4,5 +4,6 @@ module.exports = {
   fn: require('./src/fn'),
   number: require('./src/number'),
   object: require('./src/object'),
-  string: require('./src/string')
+  string: require('./src/string'),
+  undefined: require('./src/undefined')
 };

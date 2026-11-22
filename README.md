@@ -28,6 +28,7 @@ In order to use this library, just execute this command on your project :
 | [string](#string)       | Utilities dedicated to string management.                     |
 | [date](#date)           | Utilities dedicated to manage string with date / time format. |
 | [uuid](#uuid)           | Utilities dedicated to manage string with UUID format.        |
+| [undefined](#undefined) | Utilities dedicated to undefined management.                  |
 
 ## boolean
 
@@ -778,6 +779,40 @@ string.not(2); // ⇨ true
 string.not('NOT EMPTY'); // ⇨ false
 ```
 
+#### notBlank(**value**) : boolean
+
+- This function is used to know safely if a given value is **NOT** blank (that is to say not empty `string` and not containing spaces only).
+- parameter(s) :
+  - **`value`** (`string`) : a given value.
+- returns: `true` if, and only if, the given value is a `string` with a length greater than 0 and that not contains spaces only.
+- Example:
+
+```javascript
+const { string } = require('kawa-commons-lang');
+string.notBlank(); // ⇨ false
+string.notBlank(2); // ⇨ false
+string.notBlank(''); // ⇨ false
+string.notBlank(' '); // ⇨ false
+string.notBlank('NOT BLANK'); // ⇨ true
+```
+
+#### notEmpty(**value**) : boolean
+
+- This function is used to know safely if a given value is **NOT** an empty `string`.
+- parameter(s) :
+  - **`value`** (`string`) : a given value.
+- returns: `true` if, and only if, the given value is **NOT** a `string` which have a length equals to 0.
+- Example:
+
+```javascript
+const { string } = require('kawa-commons-lang');
+string.notEmpty(); // ⇨ false
+string.notEmpty(2); // ⇨ false
+string.notEmpty(''); // ⇨ false
+string.notEmpty(' '); // ⇨ true
+string.notEmpty('NOT EMPTY'); // ⇨ true
+```
+
 #### resolve(**value**, _{ minLength, maxLength, pattern}_) : string
 
 - This function is used like the _"check"_ one, but asynchonous.
@@ -1002,4 +1037,40 @@ return string.uuid
   .resolve('eeba9a56-992c-47dd-99ed-a5ac92c759a2')
   .then(uuid => console.log('Valid UUID !'))
   .catch(error => console.error('Invalid UUID : ', error));
+```
+
+## undefined
+
+#### is(**value**) : boolean
+
+- This function is used to know safely if a given value is undefined.
+- parameter(s) :
+  - value (`*`) : a given value.
+- returns:
+  - `true` if, and only if, the given `value` is undefined.
+- Example:
+
+```javascript
+const { undefined } = require('kawa-commons-lang');
+undefined.is(); // ⇨ true
+undefined.is(undefined); // ⇨ true
+undefined.is('NOT UNDEFINED'); // ⇨ false
+undefined.is(false); // ⇨ false
+```
+
+#### not(value) : boolean
+
+- This function is used to know safely if a given value is not undefined.
+- parameter(s) :
+  - value (`*`) : a given value.
+- returns:
+  - `true` if, and only if, the given `value` is not undefined.
+- Example:
+
+```javascript
+const { undefined } = require('kawa-commons-lang');
+undefined.not(); // ⇨ false
+undefined.not(undefined); // ⇨ false
+undefined.not('NOT UNDEFINED'); // ⇨ true
+undefined.not(false); // ⇨ true
 ```
