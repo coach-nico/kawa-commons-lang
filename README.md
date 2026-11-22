@@ -139,6 +139,22 @@ const { errors } = require('kawa-commons-lang');
 throw errors.new('An error message.', new Error('due to an example'));
 ```
 
+#### reject(message, cause) : CommonError
+
+- This function is used to reject a new error, initialized with a message and, optionnaly, a root cause.
+- parameter(s) :
+  - message (`string`) : a given value used as error message. Should be a string. If invalid or missing, will be replaced by a generic valid string.
+  - cause (`string` | `Error`) _optionnal_ : a given value used as cause. Should be an instance of Error or a string. _(If cause is a string, this one will be encapsulated in a generic Error)_.
+- example:
+
+```javascript
+const { errors } = require('kawa-commons-lang');
+return errors
+  .reject('An error.', new Error('A Cause'))
+  .then(error => console.log('This will never appears in console !'))
+  .catch(error => console.log('Guess what happens ?...'));
+```
+
 ## function
 
 #### async(**value**) : boolean
