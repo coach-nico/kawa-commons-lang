@@ -1,4 +1,5 @@
 module.exports = {
+  array: require('./src/array'),
   boolean: require('./src/boolean'),
   errors: require('./src/errors'),
   fn: require('./src/fn'),
