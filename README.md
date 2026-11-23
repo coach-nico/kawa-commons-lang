@@ -19,6 +19,7 @@ In order to use this library, just execute this command on your project :
 
 | Name                    | Description                                                   |
 | :---------------------- | :------------------------------------------------------------ |
+| [array](#array)         | Utilities dedicated to manage array.                          |
 | [boolean](#boolean)     | Utilities dedicated to boolean primitive management.          |
 | [errors](#errors)       | Utilities dedicated to error management.                      |
 | [function](#function)   | Utilities dedicated to manage functions.                      |
@@ -29,6 +30,87 @@ In order to use this library, just execute this command on your project :
 | [date](#date)           | Utilities dedicated to manage string with date / time format. |
 | [uuid](#uuid)           | Utilities dedicated to manage string with UUID format.        |
 | [undefined](#undefined) | Utilities dedicated to undefined management.                  |
+
+## array
+
+#### is(**value**) : boolean
+
+- This function is used to know safely if a given value is a valid array.
+- parameter(s) :
+  - **`value`** (`Array`) : a given value.
+- returns: `true` if, and only if, the given value is an array.
+- Example:
+
+```javascript
+const { array } = require('kawa-commons-lang');
+array.is(); // ⇨ false
+array.is(true); // ⇨ false
+array.is([]); // ⇨ true
+array.is(['1', '2', '3']); // ⇨ true
+```
+
+#### isEmpty(**value**) : boolean
+
+- This function is used to know safely if a given value is a valid empty array.
+- parameter(s) :
+  - **`value`** (`Array`) : a given value.
+- returns: `true` if, and only if, the given value is not array or an empty array.
+- Example:
+
+```javascript
+const { array } = require('kawa-commons-lang');
+array.isEmpty(); // ⇨ true
+array.isEmpty(true); // ⇨ true
+array.isEmpty([]); // ⇨ true
+array.isEmpty(['1', '2', '3']); // ⇨ false
+```
+
+#### length(**value**) : number
+
+- This function is used to retrieve safely the length of a given value.
+- parameter(s) :
+  - **`value`** (`Array`) : a given value.
+- returns: the length of a given array, 0 if invalid.
+- Example:
+
+```javascript
+const { array } = require('kawa-commons-lang');
+array.length(); // ⇨ 0
+array.length(true); // ⇨ 0
+array.length([]); // ⇨ 0
+array.length(['1', '2', '3']); // ⇨3
+```
+
+#### not(**value**) : boolean
+
+- This function is used to know safely if a given value is a **NOT** valid array.
+- parameter(s) :
+  - **`value`** (`Array`) : a given value.
+- returns: `true` if, and only if, the given value is **NOT** an array.
+- Example:
+
+```javascript
+const { array } = require('kawa-commons-lang');
+array.not(); // ⇨ true
+array.not(true); // ⇨ true
+array.not([]); // ⇨ false
+array.not(['1', '2', '3']); // ⇨ false
+```
+
+#### notEmpty(**value**) : boolean
+
+- This function is used to know safely if a given value is **NOT** a valid empty array.
+- parameter(s) :
+  - **`value`** (`Array`) : a given value.
+- returns: `true` if, and only if, the given value is not empty array.
+- Example:
+
+````javascript
+const { array } = require('kawa-commons-lang');
+array.notEmpty(); // ⇨ false
+array.notEmpty(true); // ⇨ false
+array.notEmpty([]); // ⇨ false
+array.notEmpty(['1', '2', '3']); // ⇨ true
 
 ## boolean
 
@@ -49,7 +131,7 @@ boolean.check(); // ⇨ CommonError: The value MUST be a boolean.
 boolean.check('not a boolean'); // ⇨ CommonError: The value MUST be a boolean.
 boolean.check(false); // ⇨ false
 boolean.check(true); // ⇨ true
-```
+````
 
 #### clean(**value**, _options_) : boolean
 
