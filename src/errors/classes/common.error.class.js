@@ -9,6 +9,8 @@ class CommonError extends Error {
   constructor(message, cause) {
     super(utils.cleanMessage(message), { cause: utils.cleanCause(cause) });
   }
+
+  reject = () => Promise.reject(this);
 }
 
 module.exports = CommonError;
