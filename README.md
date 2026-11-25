@@ -982,6 +982,26 @@ string.trim(' string '); // ⇨ 'string'
 
 ### date
 
+#### check(**value**) : string
+
+- This function is used to _"check"_ a given string in order to validate that this one is a date (with or without time).
+- parameter(s) :
+  - **`value`** (`string`) : a given value.
+- returns the given `value` if, and only if, this one is valid `string` wich respect a date format.
+- throws :
+  - when the given `value` is missing (`undefined`).
+  - when the given `value` is **NOT** a `string`.
+  - when the given `value` does not match one of the date pattern.
+- Example:
+
+```javascript
+const { string } = require('kawa-commons-lang');
+string.date.check(); // ⇨ CommonError: The value MUST be a string.
+string.date.check(14); // ⇨ CommonError: The value MUST be a string.
+string.date.check('NOT-A-DATE'); // ⇨ CommonError: `The value MUST have a valid date / time format.`
+string.date.check('1981-10-19T00:45:12.364+01:00'); // ⇨ eeba9a56-992c-47dd-99ed-a5ac92c759a2
+```
+
 #### is(**value**) : boolean
 
 - This function is used to know safely if a given value is a valid `string` which respects one of the date / time format.
@@ -1012,24 +1032,15 @@ string.date.not('NOT A VALID UUID'); // ⇨ true
 string.date.not('1981-10-19T00:45:12.364+01:00'); // ⇨ false
 ```
 
-#### check(**value**) : string
+#### now() : string
 
-- This function is used to _"check"_ a given string in order to validate that this one is a date (with or without time).
-- parameter(s) :
-  - **`value`** (`string`) : a given value.
-- returns the given `value` if, and only if, this one is valid `string` wich respect a date format.
-- throws :
-  - when the given `value` is missing (`undefined`).
-  - when the given `value` is **NOT** a `string`.
-  - when the given `value` does not match one of the date pattern.
+- This function is used to retrieve an ISO string of the current date.
+- returns: the date / time, in an ISO string.
 - Example:
 
 ```javascript
 const { string } = require('kawa-commons-lang');
-string.date.check(); // ⇨ CommonError: The value MUST be a string.
-string.date.check(14); // ⇨ CommonError: The value MUST be a string.
-string.date.check('NOT-A-DATE'); // ⇨ CommonError: `The value MUST have a valid date / time format.`
-string.date.check('1981-10-19T00:45:12.364+01:00'); // ⇨ eeba9a56-992c-47dd-99ed-a5ac92c759a2
+string.date.now(); // ⇨ 2026-11-25T12:53:14.791Z
 ```
 
 #### resolve(**value**) : string

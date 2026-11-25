@@ -15,4 +15,6 @@ const check = value => {
 
 const resolve = value => fn.async(() => check(value));
 
-module.exports = { check, is, not, resolve };
+const now = () => new Date().toISOString();
+
+module.exports = { check, is, not, now, resolve };
