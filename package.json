@@ -1,6 +1,6 @@
 {
   "name": "kawa-commons-lang",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Common set of utilities / helpers dedicated to javascript / node projects.",
   "license": "ISC",
   "author": "Coach Nico (https://github.com/coach-nico)",
