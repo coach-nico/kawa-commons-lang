@@ -29,6 +29,13 @@ describe('Checking [Common Error] class.', () => {
     });
   });
 
+  describe('Checking [reject] method.', () => {
+    it('should reject a the instance.', () => {
+      const error = new CommonError('m', new Error('cause'));
+      expect(error.reject()).rejects.toBe(error);
+    });
+  });
+
   describe('Checking [reject] utility.', () => {
     it('should reject a new instance of common error class.', () => {
       const cause = new Error('cause');
