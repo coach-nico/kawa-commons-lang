@@ -7,5 +7,5 @@ module.exports = {
     '<rootDir>/eslint.config.js',
     '<rootDir>/index.js'
   ],
-  coverageThreshold: { global: { statements: 98 } }
+  coverageThreshold: { global: { statements: 100 } }
 };

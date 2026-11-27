@@ -1,5 +1,4 @@
 const lang = require('../../../');
-const errors = require('../../../src/string/errors/string.errors');
 
 describe('Check [date] script of utilities', () => {
   describe('Check [is] utility.', () => {
@@ -37,6 +36,13 @@ describe('Check [date] script of utilities', () => {
       { given: `string`, expected: true }
     ])('should return [$expected] when given [$given]', ({ given, expected }) => {
       expect(lang.string.date.not(given)).toBe(expected);
+    });
+  });
+
+  describe('Check [now] utility.', () => {
+    it('should return the current date/time.', () => {
+      jest.useFakeTimers().setSystemTime(new Date('1981-10-18T23:45:00.000Z'));
+      expect(lang.string.date.now()).toBe('1981-10-18T23:45:00.000Z');
     });
   });
 
