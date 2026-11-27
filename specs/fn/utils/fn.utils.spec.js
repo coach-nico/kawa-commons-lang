@@ -48,18 +48,22 @@ describe('Check [function] script of utilities', () => {
     it.each([
       { given: undefined, expected: undefined },
       { given: 'a', expected: undefined },
-      { given: () => 'b', expected: 'b' }
+      { given: () => 'b', expected: 'b' },
+      { given: () => Promise.resolve('c'), expected: 'c' }
     ])('should resolve [$expected] when given [$given] as value.', ({ given, expected }) => {
       expect(lang.fn.async(given)).resolves.toEqual(expected);
     });
 
-    it('should reject when given a function which throw an exception.', () => {
-      const error = new Error('argh!');
-      expect(
-        lang.fn.async(() => {
-          throw error;
-        })
-      ).rejects.toThrow(error);
+    it.each([
+      {
+        given: () => {
+          throw new Error('d');
+        },
+        expected: 'd'
+      },
+      { given: () => Promise.reject(new Error('e')), expected: 'e' }
+    ])('should reject $expected when given a function which throw or reject an error.', ({ given, expected }) => {
+      expect(lang.fn.async(given)).rejects.toThrow(expected);
     });
   });
 });

@@ -1,5 +1,4 @@
 const lang = require('../../../');
-const errors = require('../../../src/boolean/errors/boolean.errors');
 
 describe('Check [array] script of utilities', () => {
   describe('Check [is] utility.', () => {
